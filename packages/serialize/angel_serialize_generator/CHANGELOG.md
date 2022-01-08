@@ -1,5 +1,9 @@
 # Change Log
 
+## 4.3.1
+
+* Fixed generated code issues
+
 ## 4.3.0
 
 * Updated to use  `package:belatuk_code_buffer`

@@ -8,13 +8,13 @@ part of 'goat.dart';
 
 @generatedSerializable
 class Goat implements _Goat {
-  const Goat({this.integer = 34, this.list = const [34, 35]});
+  Goat({this.integer = 34, this.list = const []});
 
   @override
-  final int integer;
+  int integer;
 
   @override
-  final List<int> list;
+  List<int> list;
 
   Goat copyWith({int? integer, List<int>? list}) {
     return Goat(integer: integer ?? this.integer, list: list ?? this.list);
@@ -71,13 +71,16 @@ class GoatSerializer extends Codec<Goat, Map> {
   GoatDecoder get decoder => const GoatDecoder();
   static Goat fromMap(Map map) {
     return Goat(
-        integer: map['integer'] as int? ?? 34,
+        integer: map['integer'] as int ?? 34,
         list: map['list'] is Iterable
             ? (map['list'] as Iterable).cast<int>().toList()
             : const [34, 35]);
   }
 
-  static Map<String, dynamic> toMap(_Goat model) {
+  static Map<String, dynamic> toMap(_Goat? model) {
+    if (model == null) {
+      return {};
+    }
     return {'integer': model.integer, 'list': model.list};
   }
 }

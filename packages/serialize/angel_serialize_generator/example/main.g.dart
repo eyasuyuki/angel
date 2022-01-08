@@ -66,16 +66,17 @@ class TodoSerializer extends Codec<Todo, Map> {
 
   @override
   TodoEncoder get encoder => const TodoEncoder();
-
   @override
   TodoDecoder get decoder => const TodoDecoder();
-
   static Todo fromMap(Map map) {
     return Todo(
         text: map['text'] as String?, completed: map['completed'] as bool?);
   }
 
-  static Map<String, dynamic> toMap(_Todo model) {
+  static Map<String, dynamic> toMap(_Todo? model) {
+    if (model == null) {
+      return {};
+    }
     return {'text': model.text, 'completed': model.completed};
   }
 }
